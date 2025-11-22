@@ -1,0 +1,14 @@
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Flask-Login==0.6.3
+Werkzeug==3.0.0
+gunicorn==21.2.0
+psycopg2-binary==2.9.10
+supabase==2.15.2
+python-dotenv==1.1.0
+Flask-Login==0.6.3
+Flask-Mail==0.9.1
+Flask-Uploads==0.2.1
+Flask-WTF==1.2.1
+bcrypt==4.0.1
+supafunc==0.9.4
