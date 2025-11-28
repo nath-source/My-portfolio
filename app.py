@@ -69,7 +69,7 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
-    projects = Project.query.all()
+    projects = Project.query.order_by(Project.id.desc()).all()
     return render_template('index.html', projects=projects)
 
 @app.route('/api/projects')
@@ -177,7 +177,7 @@ def admin_dashboard(the_only_admin):
         db.session.add(new_project)
         db.session.commit()
             
-    projects = Project.query.all()
+    projects = Project.query.order_by(Project.id.desc()).all()
     return render_template('admin_dashboard.html', projects=projects, admin_christiano_bernard=the_only_admin)
 
 @app.route('/edit-project/<string:the_only_admin>/<int:id>', methods=['POST'])
