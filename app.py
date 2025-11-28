@@ -15,11 +15,9 @@ load_dotenv()
 app = Flask(__name__)
 
 # --- SECURITY: ENVIRONMENT VARIABLES ---
-# FIXED: Added "or" fallback so it doesn't crash locally if SECRET_KEY is missing
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # 1. Database Configuration
-# FIXED: Added "or" fallback so it defaults to SQLite locally without crashing
 database_url = os.environ.get('DATABASE_URL')
 
 # Fix for Render's Postgres URL format
@@ -100,8 +98,8 @@ def send_message():
         message = request.form.get('message')
 
         # FIXED: Added "or" fallback for email testing
-        my_email = os.environ.get('MAIL_USERNAME') or "website.ceo.admin@gmail.com"
-        my_app_password = os.environ.get('MAIL_PASSWORD') or "YOUR_APP_PASSWORD_HERE"
+        my_email = os.environ.get('MAIL_USERNAME')
+        my_app_password = os.environ.get('MAIL_PASSWORD')
 
         msg = MIMEMultipart()
         msg['From'] = my_email
@@ -240,6 +238,5 @@ with app.app_context():
         print(f"Admin user created: {admin_email}")
 
 if __name__ == '__main__':
-    # Use the PORT environment variable for Render
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
